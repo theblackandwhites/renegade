@@ -1,0 +1,16 @@
+<h1>CreditCardDetails#update_card</h1>
+<p>Find me in app/views/credit_card_details/update_card.html.erb</p>
+
+
+ <form action="<%= credit_card_details_updating_card_path %>" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+    data-name="Renegade"
+    data-description="Credit Card Details"
+    data-locale="auto"
+    data-zip-code="false"
+    data-email=<%= current_user.email %>
+    data-currency="aud">
+  </script>
+</form>

@@ -1,0 +1,53 @@
+<div class="inner-header">
+  <div class="grid-container">
+    <div class="grid-x">
+      <div class="cell small-12 text-center">
+        <h1>Current &amp; future missions</h1>
+        <div class="subline"></div>
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+<div class="grid-container">
+  <div class="grid-x grid-margin-x">
+    <div class="cell small-12 medium-12">
+
+          <div class="grid-x">
+          <% @missions.each do |mission| %>
+            <div class="cell small-12 mission-containers">
+                <div class="grid-x grid-margin-x">
+                  <div class="cell small-12 medium-6">
+                    
+                    <div class="mission-tile-video">
+                      <div class="mission-play-button"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
+                      <img src="https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_2.0/c_limit,w_740/fl_lossy,q_auto/v1492176503/articles/2015/09/30/lawsuit-your-candy-bar-was-made-by-child-slaves/150929-haglage-chocolate-tease_ojn06f">
+                    </div>
+                  </div>
+                  <div class="cell small-12 medium-6 mission-tile">
+                    <h2><%= mission.title %></h2> 
+                    <div class="mission-title-text">
+                      <%= mission.description %>
+                      <div class="mission-details-box">
+                        <strong>Destination:</strong> Bangkok Thailand<br />
+                        <strong>Initiated:</strong> 1st July 2017 <br />
+                        <strong>Deadline:</strong> 30th July 2017
+                      </div>
+                      <div style="margin-top: 20px;"><%= link_to "VIEW MISSION", mission_path(mission), class: "button cta " %></div>
+                    </div> 
+                  </div>
+                </div>
+            </div>
+          <% end %>
+          </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<br>
+
+<%= link_to 'New Mission', new_mission_path %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @care_package.title %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @care_package.price %>
+</p>
+
+<%= link_to 'Edit', edit_care_package_path(@care_package) %> |
+<%= link_to 'Back', care_packages_path %>

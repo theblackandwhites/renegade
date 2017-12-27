@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,500,600,700" rel="stylesheet">
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <!-- Topbar starts here -->
+    <!-- Topbar mobile starts here -->
+    <div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium" style="margin-bottom: 9px;">
+      <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
+      <div class="title-bar-title text-center" style="width: 100%;"><img src="http://res.cloudinary.com/theblackandwhites/image/upload/v1513803387/renegade/assets/RENEGADE_LOGO.png" alt="Renegade Logo" width="200px"></div>
+    </div>
+    <!-- Topbar desktop here -->
+    <div class="top-bar show-for-medium show-for-large" style="position: fixed; width: 100%; top: 0; z-index: 99999;" >
+      <div class="top-bar-left">
+        <ul class="menu">
+          <!-- Renegade logo in top bar -->
+          <li class="menu-text"><img src="http://res.cloudinary.com/theblackandwhites/image/upload/v1513803387/renegade/assets/RENEGADE_LOGO.png" alt="Renegade Logo" width="220px"></li>
+        </ul>
+      </div>
+      <div class="top-bar-right" style="margin-right:10px;">
+        <ul class="menu">
+          <li><%= link_to "CURRENT MISSIONS", missions_path %></li>
+          
+          <% if user_signed_in? %>
+            <li>
+            <%= link_to('LOGOUT', destroy_user_session_path, method: :delete) %>        
+            </li>
+          <% else %>
+            <li>
+              <%= link_to('SIGN IN', new_user_session_path)  %>  
+            </li>
+          <% end %>
+
+          <li><%= link_to "SUPPORT A MISSION", missions_path, class: "button cta" %></li>
+        </ul>
+      </div>
+    </div>
+    <!-- Topbar desktop finishes here -->
+    <!-- Topbar finishes here -->
+
+    <!-- Secondary bar starts here -->
+    <!-- Topbar desktop here -->
+    <div class="secondary-bar" id="responsive-menu" style="margin-top: 70px; position: fixed; width: 100%; top: 0; z-index: 99999;">
+      <div class="text-center">
+          <%= link_to "WAR ROOM", root_path %>
+          <%= link_to "ABOUT RENEGADE", root_path %>
+          <%= link_to "CONTACT US", root_path %>
+      </div>
+    </div>
+    <!-- Topbar desktop finishes here -->
+    <%= yield %>
+
+  </body>
+</html>

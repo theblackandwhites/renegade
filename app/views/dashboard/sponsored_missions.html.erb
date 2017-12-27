@@ -1,0 +1,15 @@
+<h1>Dashboard#sponsored_missions</h1>
+<p>Find me in app/views/dashboard/sponsored_missions.html.erb</p>
+
+<% @missions.each do |mission| %>
+	<!-- Get a list of charges/carepackages that the current user bought for this mission-->
+	<% @charges = Charge.where(mission_id: mission.id).all %>
+	<!-- Show list title -->
+	<%= charge.mission.title %>
+		<!-- Loop through charges/carepakages that the current user bought for this mission -->
+		<% @charges.each do |charge| %>
+			<%= number_to_currency(charge.amount precission: 0) %> <br>
+			<small><%= time_ago_in_words(charge.created_at) %> ago</small>	
+		<% end %>
+	<%= link_to "See Mission", mission_path(mission) %>
+<% end %>

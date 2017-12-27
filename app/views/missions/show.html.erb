@@ -1,0 +1,236 @@
+<div class="off-canvas-content" data-off-canvas-content style="margin-right: 0;">
+
+<div class="inner-header-mission">
+  <div class="grid-container">
+    <div class="grid-x">
+      <div class="cell small-12 text-center">
+        <h1><%= @mission.title %></h1>
+        <div class="subline"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="grid-container">
+  <div class="grid-x grid-margin-x">
+  	<div class="cell large-3">
+  		<div class="social-presence">
+  			<h3>Fellow advocates</h3>
+  		</div>
+  	</div>
+  	<div class="cell small-12 medium-12 large-6 text-center mission-body-type">
+  		<div class="mission-stats">
+  			<i class="fa fa-power-off mission-icons" aria-hidden="true"></i> <span><strong>Initiate:</strong> 21/10/1987</span>
+  			<i class="fa fa-clock-o mission-icons" aria-hidden="true"></i> <span><strong>Deadline:</strong> 21/10/1987</span>
+  			<i class="fa fa-map-marker mission-icons" aria-hidden="true"></i> <span><strong>Destination:</strong> Bangkok</span>
+  		</div>
+
+  		<div class="mission-tile-video">
+  		  <div class="mission-play-button"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
+  		  <img src="https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1439,w_2560,x_0,y_0/dpr_2.0/c_limit,w_740/fl_lossy,q_auto/v1492176503/articles/2015/09/30/lawsuit-your-candy-bar-was-made-by-child-slaves/150929-haglage-chocolate-tease_ojn06f">
+  		</div>
+
+  		<div class="mission-content-box text-center">
+  			<h3>THE OBJECTIVE</h3>
+  			<div class="subline"></div>
+  			<p><%= @mission.description %></p>
+  		</div>
+
+  		<div class="mission-content-box text-center">
+  			<h3>THE ISSUE</h3>
+  			<div class="subline"></div>
+  			<p><%= @mission.description %></p>
+  		</div>
+
+  		<div class="mission-content-box text-center">
+  			<h3>BANGKOK</h3>
+  			<div class="subline"></div>
+  			<p><%= @mission.description %></p>
+  		</div>
+
+  		<div class="mission-content-box text-center">
+  			<h3>YOUR DONATION</h3>
+  			<div class="subline"></div>
+  			<p><%= @mission.description %></p>
+  		</div>
+
+  	</div>
+
+    
+  </div>
+</div>
+
+</div>
+
+
+
+
+<div class="off-canvas position-right reveal-for-large mission-care-package-container show-for-large hide-for-small" data-off-canvas >
+  <!-- Loop through all care packages associated with this mission -->
+  	<div class="care-package-intro-title">
+  		<img src="http://res.cloudinary.com/theblackandwhites/image/upload/v1514322669/supplies_m1diw8.svg" alt="Care Package" width="50"><br />
+  		<h2>SUPPORT THIS MISSION</h2>
+  		<p>You can support this mission by purchasing support packages. Each support package will reward you with a new rank. The more you donate the higher your rank. When you reach particular ranks you'll be rewarded with gifts such as products from our sponsors or travel and volunteer opportunities.</p>
+  	</div>
+  	<% if user_signed_in? %>
+	  	<% if current_user.stripe_customer_id.present? %>
+	  	
+	  		<div class="care-package-intro">
+				We have the following credit card stored in a safe place:<br />
+				<div class="grid-x grid-margin-x">
+				<div class="cell shrink">
+				 <% if current_user.stripe_brand == "Visa" %>
+				   <i class="fa fa-cc-visa card-fa" aria-hidden="true" style="font-size: 1.2em;"></i>
+				 <% elsif current_user.stripe_brand == "MasterCard" %>
+				   <i class="fa fa-cc-mastercard card-fa" aria-hidden="true"></i>
+				 <% elsif current_user.stripe_brand == "American Express" %>
+				   <i class="fa fa-cc-amex card-fa" aria-hidden="true"></i>  
+				 <% elsif current_user.stripe_brand == "Discover" %>
+				   <i class="fa fa-cc-discover card-fa" aria-hidden="true"></i>
+				 <% elsif current_user.stripe_brand == "JCB" %>
+				   <i class="fa fa-cc-jcb card-fa" aria-hidden="true"></i>
+				 <% elsif current_user.stripe_brand == "Diners Club" %>
+				   <i class="fa fa-cc-diners-club card-fa" aria-hidden="true"></i>
+				 <% else %>
+				   <i class="fa fa-credit-card card-fa" aria-hidden="true"></i>
+				 <% end %>
+				</div>
+				<div class="cell auto" style="font-size: 1.2em; padding-top: 10px;"><small>xxxx xxxx xxxx <%= current_user.stripe_last4 %> <%= current_user.stripe_exp_month %>/<%= current_user.stripe_exp_year %></small>
+				</div>
+				<div class="cell shrink text-right" style="padding-top: 13px;">
+					<%= link_to credit_card_details_update_card_path, style: "color: #a1a1a1" do %>
+						<span style="font-size: 0.7em;">EDIT CARD</span> <i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 1.2em;"></i>
+					<% end %>
+				</div>
+			</div>
+		</div>
+		<% end %>
+	<% end %>
+  	
+	  <% @care_packages.each do |mission_care_package| %>
+	  <div class="care-package">
+	  	 <h3>&nbsp;<%= mission_care_package.care_package.title %> </h3>
+	  	<div class="grid-x">
+	  		<div class="mission_care_package_price cell shrink "><span>DONATE</span> <%= number_to_currency(mission_care_package.care_package.price, precission: 0) %></div>
+	  		<div class="cell auto text-right">
+	  			<% if user_signed_in? %>
+	  			<!-- Ensure user is signed in before seeing charge buttons -->
+	  			<!-- if current user has a stripe_id then pay with card on file, else pay with stripe button -->
+	  				<% if current_user.stripe_customer_id.present? %>
+	  					
+	  					<%= link_to "INSTANT DONATION", charge_make_charge_url(:care_package => mission_care_package.id), class: "button cta expanded" %>
+	  				<% else %>
+	  					<form action="<%= charge_make_charge_url(:care_package => mission_care_package.id) %>" method="POST">
+	  					  <script
+	  					    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+	  					    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+	  					    data-amount="<%= (mission_care_package.care_package.price * 100).ceil %>"
+	  					    data-name="Renegade"
+	  					    data-label="Donate Now"
+	  					    data-email="<%= current_user.email %>"
+	  					    data-description="<%= mission_care_package.care_package.title %>"
+	  					    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+	  					    data-locale="auto"
+	  					    data-zip-code="false">
+	  					  </script>
+	  					</form>
+	  				<% end %>
+	  			<% else %>
+	  				<%= link_to "SIGN UP TO DONATE", new_user_registration_path(:care_package => mission_care_package.id), class: "button cta expanded" %>
+	  			<% end %>
+	  		</div>
+	  	</div>
+	  	
+	  	</div>
+	  <% end %>
+  
+</div>
+
+<div class="hide-for-large mobile-bottom-mission-bar">
+	<h3>SUPPORT THIS MISSION</h3> <button type="button" class="button cta" data-toggle="offCanvasRight">VIEW CARE PACKAGES</button>
+</div>
+
+<!-- Mobile Pull Out -->
+<div class="off-canvas position-right mission-care-package-container-small" id="offCanvasRight" data-off-canvas>
+	<button class="close-button" aria-label="Close menu" type="button" data-close>
+	  <span aria-hidden="true" style="color:#fff;">&times;</span>
+	</button>
+  <!-- Loop through all care packages associated with this mission -->
+  	<div class="care-package-intro-title">
+  		<img src="http://res.cloudinary.com/theblackandwhites/image/upload/v1514322669/supplies_m1diw8.svg" alt="Care Package" width="50"><br />
+  		<h2>SUPPORT THIS MISSION</h2>
+  		<p>You can support this mission by purchasing care packages. Each care package will reward you with a new rank. The more you donate the higher your rank. When you reach particular ranks you'll be rewarded with gifts such as products from our sponsors or travel and volunteer opportunities.</p>
+  	</div>
+  	<% if user_signed_in? %>
+	  	<% if current_user.stripe_customer_id.present? %>
+	  	
+	  		<div class="care-package-intro">
+				We have the following credit card stored in a safe place:<br />
+				<div class="grid-x grid-margin-x">
+				<div class="cell shrink">
+				 <% if current_user.stripe_brand == "Visa" %>
+				   <i class="fa fa-cc-visa card-fa" aria-hidden="true" style="font-size: 1.2em;"></i>
+				 <% elsif current_user.stripe_brand == "MasterCard" %>
+				   <i class="fa fa-cc-mastercard card-fa" aria-hidden="true"></i>
+				 <% elsif current_user.stripe_brand == "American Express" %>
+				   <i class="fa fa-cc-amex card-fa" aria-hidden="true"></i>  
+				 <% elsif current_user.stripe_brand == "Discover" %>
+				   <i class="fa fa-cc-discover card-fa" aria-hidden="true"></i>
+				 <% elsif current_user.stripe_brand == "JCB" %>
+				   <i class="fa fa-cc-jcb card-fa" aria-hidden="true"></i>
+				 <% elsif current_user.stripe_brand == "Diners Club" %>
+				   <i class="fa fa-cc-diners-club card-fa" aria-hidden="true"></i>
+				 <% else %>
+				   <i class="fa fa-credit-card card-fa" aria-hidden="true"></i>
+				 <% end %>
+				</div>
+				<div class="cell auto" style="font-size: 1.2em; padding-top: 10px;"><small>xxxx xxxx xxxx <%= current_user.stripe_last4 %> <%= current_user.stripe_exp_month %>/<%= current_user.stripe_exp_year %></small>
+				</div>
+				<div class="cell shrink text-right" style="padding-top: 13px;">
+					<%= link_to credit_card_details_update_card_path, style: "color: #a1a1a1" do %>
+						<span style="font-size: 0.7em;">EDIT CARD</span> <i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 1.2em;"></i>
+					<% end %>
+				</div>
+			</div>
+		</div>
+		<% end %>
+	<% end %>
+  	
+	  <% @care_packages.each do |mission_care_package| %>
+	  <div class="care-package">
+	  	 <h3>&nbsp;<%= mission_care_package.care_package.title %> </h3>
+	  	<div class="grid-x">
+	  		<div class="mission_care_package_price cell shrink "><span>DONATE</span> <%= number_to_currency(mission_care_package.care_package.price, precission: 0) %></div>
+	  		<div class="cell auto text-right">
+	  			<% if user_signed_in? %>
+	  			<!-- Ensure user is signed in before seeing charge buttons -->
+	  			<!-- if current user has a stripe_id then pay with card on file, else pay with stripe button -->
+	  				<% if current_user.stripe_customer_id.present? %>
+	  					
+	  					<%= link_to "INSTANT DONATION", charge_make_charge_url(:care_package => mission_care_package.id), class: "button cta expanded" %>
+	  				<% else %>
+	  					<form action="<%= charge_make_charge_url(:care_package => mission_care_package.id) %>" method="POST">
+	  					  <script
+	  					    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+	  					    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+	  					    data-amount="<%= (mission_care_package.care_package.price * 100).ceil %>"
+	  					    data-name="Renegade"
+	  					    data-label="Donate Now"
+	  					    data-email="<%= current_user.email %>"
+	  					    data-description="<%= mission_care_package.care_package.title %>"
+	  					    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+	  					    data-locale="auto"
+	  					    data-zip-code="false">
+	  					  </script>
+	  					</form>
+	  				<% end %>
+	  			<% else %>
+	  				<%= link_to "SIGN UP TO DONATE", new_user_registration_path(:care_package => mission_care_package.id), class: "button cta expanded" %>
+	  			<% end %>
+	  		</div>
+	  	</div>
+	  	
+	  	</div>
+	  <% end %>
+  
+</div>

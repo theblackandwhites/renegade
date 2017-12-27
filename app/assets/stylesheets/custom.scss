@@ -1,0 +1,334 @@
+@import 'settings';
+
+.menu a{
+	color: $white;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+}
+
+.menu a:hover{
+	color: $dark-gray;
+}
+
+.secondary-bar{
+	background-color: $secondarynavigation-background !important;
+	padding: 10px 0;
+}
+
+.secondary-bar a{
+	color: $white;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	padding:10px 10px;
+	font-size:0.9em;
+}
+
+.black-overlay{
+	height: 100%;
+	width:100%;
+	background-color: rgba(0,0,0,0.8);
+}
+
+.video-title-overlay h1{
+	color: $white;
+	font-size: 5em;
+	font-family: 'Oswald', sans-serif;
+}
+
+.video-title-overlay h2{
+	color: $white;
+	font-size: 1.5em;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+}
+
+.home-side-bar{
+	height: 100vh;
+	background-color: $home-sidebar;
+	padding: 20px;
+}
+
+.home-side-bar h2{
+	color: $white;
+	font-size: 1.2em;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 500;
+	text-transform: uppercase;
+}
+
+.mission_tile_text{
+	background-color: $mission-tile-background;
+	padding:20px;
+	color: $white;
+	font-size: 0.9em;
+}
+
+.mission_tile_homepage{
+	margin-top:20px;
+}
+
+/* Mission Pages */
+
+.inner-header {
+	background-color: $white;
+	width: 100%;
+	padding:150px 0;
+
+}
+
+.inner-header h1{
+	font-size: 3.5em;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 700;
+	letter-spacing: -1px;
+	text-transform: uppercase;
+}
+
+.inner-header .subline{
+	height: 5px;
+	width: 10%;
+	background-color: $cta-color;
+	margin: auto;
+	margin-top: 20px;
+}
+
+.mission-tile h2{
+	font-size: 1.5em;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 700;
+	letter-spacing: -1px;
+	text-transform: uppercase;
+}
+
+.mission-title-text{
+	font-size: 1.1em;
+	font-family: 'Roboto', sans-serif;
+}
+
+.mission-containers{
+	margin-bottom: 40px;
+}
+
+.mission-details-box{
+	margin-top:20px;
+	background-color: $light-gray;
+	padding: 20px;
+	font-size:.8em;
+}
+
+.mission-tile-video{
+	position: relative;
+	background-color: #000;
+}
+
+.mission-tile-video::before {
+    content:"";
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(9, 56, 109, .8);
+}
+
+.mission-play-button{
+	position: absolute;
+	font-size: 6em; 
+	line-height:0;
+	left: 50%;
+	width: 100px;
+	height: 100px;
+	color: #fff;
+	text-align:center;
+	margin-left: -50px;
+	top: 50%;
+	margin-top: -50px;
+}
+
+/* Mission show page */
+
+.mission-icons{
+	color: $cta-color;
+	font-size: 1.4em;
+	margin-left: 10px;
+	margin-right: 5px;
+}
+
+.mission-body-type{
+	font-family: 'Roboto', sans-serif;
+	font-size: 1.2em;
+}
+
+.inner-header-mission {
+	background-color: $white;
+	width: 100%;
+	padding:150px 0 50px 0;
+}
+
+@media all and (min-width:0px) and (max-width: 640px) {
+  
+  .inner-header-mission {
+  	background-color: $white;
+  	width: 100%;
+  	padding:50px 0 50px 0;
+  }
+
+}
+
+.inner-header-mission h1{
+	font-size: 3.5em;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 700;
+	letter-spacing: -1px;
+	text-transform: uppercase;
+}
+
+.inner-header-mission .subline{
+	height: 5px;
+	width: 10%;
+	background-color: $cta-color;
+	margin: auto;
+	margin-top: 20px;
+}
+
+.mission-objective{
+	margin-top: 50px;
+}
+
+.mission-stats{
+	font-size:0.8em;
+	background-color: #191e21;
+	padding:10px;
+	color: $white;
+}
+
+.mission-care-package-container{
+	margin-top: 114px;
+	background-color: $navigation-background;
+	color: $white;
+}
+
+.mission-care-package-container-small{
+	background-color: $navigation-background;
+	color: $white;
+}
+
+.care-package h3{
+	font-size: 1.5em;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 700;
+	letter-spacing: -1px;
+	text-transform: uppercase;
+}
+
+.care-package
+{
+	padding: 20px 20px ;
+	border-bottom: 1px solid $secondarynavigation-background;
+	transition: all 0.5s ease;
+	background-color: $navigation-background;
+}
+
+.care-package:hover{
+	background-color: #0b0f11;
+}
+
+.mission_care_package_price{
+	background-color: $secondarynavigation-background;
+	padding: 7px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1.2em;
+	font-weight: 700;
+	height: 40px;
+}
+
+.mission_care_package_price span{
+	color: #4fc090;
+	font-size: 0.6em !important;
+	font-weight: 500;
+}
+
+.care-package-intro-title h2{
+	font-size: 1.9em;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 700;
+	letter-spacing: -1px;
+}
+
+.care-package-intro-title p{
+	font-size: .9em;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	text-align: justify;
+	line-height: 1.1em;
+}
+
+.care-package-intro-title{
+	text-align: center;
+	padding: 20px;
+	background-color: #0b0f11;
+	background-image: url('http://res.cloudinary.com/theblackandwhites/image/upload/e_brightness:-32/v1514326279/49739_xkigul.jpg');
+	background-size: cover;
+}
+
+.care-package-intro{
+	padding: 20px;
+	border-bottom: 1px solid $secondarynavigation-background;
+	font-size: 0.9em;
+}
+
+.care-package-intro .card-fa{
+	font-size: 2em !important;
+	padding-top: 10px;
+}
+
+.mission-content-box{
+	padding: 20px;
+}
+
+.mission-content-box h3{
+	font-size: 2em;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 700;
+	letter-spacing: -1px;
+	text-transform: uppercase;
+}
+
+.mission-content-box p{
+	text-align: justify;
+}
+
+.mission-content-box .subline{
+	height: 5px;
+	width: 10%;
+	background-color: $cta-color;
+	margin: 20px auto;
+}
+
+.mobile-bottom-mission-bar{
+	position: fixed;
+	bottom: 0;
+	background-color: $home-sidebar;
+	padding: 10px 0;
+	width: 100%;
+	text-align: center;
+}
+
+.mobile-bottom-mission-bar h3{
+	font-size: 1.5em;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 700;
+	letter-spacing: -1px;
+	text-transform: uppercase;
+	color: $white;
+}
+
+.social-presence h3{
+	font-size: 1.6em;
+	font-family: 'Oswald', sans-serif;
+	font-weight: 700;
+	letter-spacing: -1px;
+	text-transform: uppercase;
+}
+

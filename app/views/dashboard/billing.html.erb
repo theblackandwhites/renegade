@@ -1,0 +1,8 @@
+<h1>Dashboard#billing</h1>
+<p>Find me in app/views/dashboard/billing.html.erb</p>
+
+<% @charges.each do |charge| %>
+	<%= charge.mission.title %><br />
+	<%= charge.care_package.title %><br />
+	<%= number_to_currency(charge.amount precission: 0) %>
+<% end %>
